@@ -201,7 +201,7 @@ endif()
 OCV_OPTION(OPENCV_ENABLE_NONFREE "Enable non-free algorithms" OFF)
 
 # 3rd party libs
-OCV_OPTION(BUILD_ZLIB               "Build zlib from source"             WIN32 OR APPLE)
+OCV_OPTION(BUILD_ZLIB               "Build zlib from source"             OFF)
 OCV_OPTION(BUILD_TIFF               "Build libtiff from source"          WIN32 OR ANDROID OR APPLE)
 OCV_OPTION(BUILD_JASPER             "Build libjasper from source"        WIN32 OR ANDROID OR APPLE)
 OCV_OPTION(BUILD_JPEG               "Build libjpeg from source"          WIN32 OR ANDROID OR APPLE)
