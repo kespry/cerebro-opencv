@@ -32,6 +32,13 @@ DECLARE_CV_YIELD
 # define CV_YIELD() std::this_thread::yield()
 #endif // CV_YIELD
 
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+# if TARGET_OS_IPHONE
+#include "xmmintrin.h"
+# endif
+#endif
+
 // Spin lock's CPU-level yield (required for Hyper-Threading)
 #ifdef DECLARE_CV_PAUSE
 DECLARE_CV_PAUSE
