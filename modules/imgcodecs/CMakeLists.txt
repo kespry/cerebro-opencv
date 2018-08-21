@@ -104,10 +104,10 @@ file(GLOB imgcodecs_ext_hdrs
      "${CMAKE_CURRENT_LIST_DIR}/include/opencv2/${name}/*.h"
      )
 
-if(IOS)
-  list(APPEND imgcodecs_srcs ${CMAKE_CURRENT_LIST_DIR}/src/ios_conversions.mm)
-  list(APPEND IMGCODECS_LIBRARIES "-framework Accelerate" "-framework CoreGraphics" "-framework QuartzCore" "-framework AssetsLibrary")
-endif()
+#if(IOS)
+#  list(APPEND imgcodecs_srcs ${CMAKE_CURRENT_LIST_DIR}/src/ios_conversions.mm)
+#  list(APPEND IMGCODECS_LIBRARIES "-framework Accelerate" "-framework CoreGraphics" "-framework QuartzCore" "-framework AssetsLibrary")
+#endif()
 if(APPLE_FRAMEWORK)
   list(APPEND IMGCODECS_LIBRARIES "-framework UIKit")
 endif()
