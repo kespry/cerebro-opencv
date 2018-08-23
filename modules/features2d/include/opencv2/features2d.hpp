@@ -724,7 +724,7 @@ public:
      */
     CV_WRAP static Ptr<AKAZE> create(int descriptor_type=AKAZE::DESCRIPTOR_MLDB,
                                      int descriptor_size = 0, int descriptor_channels = 3,
-                                     float threshold = 0.001f, int nOctaves = 4,
+                                     float threshold = 0.001f, int nOctaves = 4, int firstOctave = 0,
                                      int nOctaveLayers = 4, int diffusivity = KAZE::DIFF_PM_G2);
 
     CV_WRAP virtual void setDescriptorType(int dtype) = 0;
@@ -741,6 +741,9 @@ public:
 
     CV_WRAP virtual void setNOctaves(int octaves) = 0;
     CV_WRAP virtual int getNOctaves() const = 0;
+
+    CV_WRAP virtual void setFirstOctave(int octave) = 0;
+    CV_WRAP virtual int getFirstOctave() const = 0;
 
     CV_WRAP virtual void setNOctaveLayers(int octaveLayers) = 0;
     CV_WRAP virtual int getNOctaveLayers() const = 0;

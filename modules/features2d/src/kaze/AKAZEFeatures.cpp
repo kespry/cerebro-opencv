@@ -70,6 +70,8 @@ void AKAZEFeatures::Allocate_Memory_Evolution(void) {
       break;
     }
 
+    if (i < options_.firstoctave) continue;
+
     for (int j = 0; j < options_.nsublevels; j++) {
       MEvolution step;
       step.size = Size(level_width, level_height);

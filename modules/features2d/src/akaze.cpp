@@ -61,12 +61,13 @@ namespace cv
     {
     public:
         AKAZE_Impl(int _descriptor_type, int _descriptor_size, int _descriptor_channels,
-                 float _threshold, int _octaves, int _sublevels, int _diffusivity)
+                 float _threshold, int _octaves, int _first_octave, int _sublevels, int _diffusivity)
         : descriptor(_descriptor_type)
         , descriptor_channels(_descriptor_channels)
         , descriptor_size(_descriptor_size)
         , threshold(_threshold)
         , octaves(_octaves)
+        , first_octave(_first_octave)
         , sublevels(_sublevels)
         , diffusivity(_diffusivity)
         {
@@ -91,6 +92,9 @@ namespace cv
 
         void setNOctaves(int octaves_) CV_OVERRIDE { octaves = octaves_; }
         int getNOctaves() const CV_OVERRIDE { return octaves; }
+
+        void setFirstOctave(int octave_) CV_OVERRIDE { first_octave = octave_; }
+        int getFirstOctave() const CV_OVERRIDE { return first_octave; }
 
         void setNOctaveLayers(int octaveLayers_) CV_OVERRIDE { sublevels = octaveLayers_; }
         int getNOctaveLayers() const CV_OVERRIDE { return sublevels; }
@@ -179,6 +183,7 @@ namespace cv
             options.img_height = image.rows();
             options.dthreshold = threshold;
             options.omax = octaves;
+            options.firstoctave = first_octave;
             options.nsublevels = sublevels;
             options.diffusivity = diffusivity;
 
@@ -212,6 +217,7 @@ namespace cv
             fs << "descriptor_size" << descriptor_size;
             fs << "threshold" << threshold;
             fs << "octaves" << octaves;
+            fs << "first_octave" << first_octave;
             fs << "sublevels" << sublevels;
             fs << "diffusivity" << diffusivity;
         }
@@ -223,6 +229,7 @@ namespace cv
             descriptor_size = (int)fn["descriptor_size"];
             threshold = (float)fn["threshold"];
             octaves = (int)fn["octaves"];
+            first_octave = (int)fn["first_octave"];
             sublevels = (int)fn["sublevels"];
             diffusivity = (int)fn["diffusivity"];
         }
@@ -232,17 +239,18 @@ namespace cv
         int descriptor_size;
         float threshold;
         int octaves;
+        int first_octave;
         int sublevels;
         int diffusivity;
     };
 
     Ptr<AKAZE> AKAZE::create(int descriptor_type,
                              int descriptor_size, int descriptor_channels,
-                             float threshold, int octaves,
+                             float threshold, int octaves, int first_octave,
                              int sublevels, int diffusivity)
     {
         return makePtr<AKAZE_Impl>(descriptor_type, descriptor_size, descriptor_channels,
-                                   threshold, octaves, sublevels, diffusivity);
+                                   threshold, octaves, first_octave, sublevels, diffusivity);
     }
 
     String AKAZE::getDefaultName() const

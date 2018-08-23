@@ -39,6 +39,7 @@ struct AKAZEOptions {
     }
 
     int omax;                       ///< Maximum octave evolution of the image 2^sigma (coarsest scale sigma units)
+    int firstoctave;                ///< Octave to start at (to allow for skipping octaves)
     int nsublevels;                 ///< Default number of sublevels per scale level
     int img_width;                  ///< Width of the input image
     int img_height;                 ///< Height of the input image
